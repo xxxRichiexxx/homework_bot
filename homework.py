@@ -28,7 +28,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
 RETRY_TIME = 600
-ENDPOINT = 'https://practicum.yandex.ru/api/user_api/homework_statuses/'
+ENDPOINT = 'https://practicum.yandex.ru/api/user_api/homework_statuses/2'
 HEADERS = {'Authorization': f'OAuth {PRACTICUM_TOKEN}'}
 
 HOMEWORK_STATUSES = {
@@ -108,6 +108,20 @@ def check_tokens():
     return False
 
 
+def logging_procedure(error):
+    """Процедура логирования."""
+    if type(error) == exceptions.InfoException:
+        logger.info(error)
+    elif type(error) == exceptions.WarningException:
+        logger.warning(error)
+    elif type(error) in (exceptions.ErrorException,
+                         TypeError,
+                         KeyError):
+        logger.error(error)
+    elif type(error) == exceptions.CriticalException:
+        logger.critical(error)
+
+
 def main():
     """Основная логика работы бота."""
     if not check_tokens():
@@ -134,16 +148,7 @@ def main():
                and type(error) == exceptions.ErrorException):
                 send_message(bot, message)
                 message_cache = message
-            if type(error) == exceptions.InfoException:
-                logger.info(error)
-            elif type(error) == exceptions.WarningException:
-                logger.warning(error)
-            elif type(error) in (exceptions.ErrorException,
-                                 TypeError,
-                                 KeyError):
-                logger.error(error)
-            elif type(error) == exceptions.CriticalException:
-                logger.critical(error)
+            logging_procedure(error)
             time.sleep(RETRY_TIME)
 
 
