@@ -1,18 +1,22 @@
-class DebugException(Exception):
-    pass
-
-
-class InfoException(Exception):
-    pass
-
-
-class WarningException(Exception):
-    pass
-
-
 class ErrorException(Exception):
     pass
 
 
 class CriticalException(Exception):
+    pass
+
+
+class EndpointException(ErrorException):
+    pass
+
+
+class CheckResponseException(ErrorException):
+    pass
+
+
+class ParseStatusException(ErrorException):
+    pass
+
+
+class NoTokensException(CriticalException):
     pass
