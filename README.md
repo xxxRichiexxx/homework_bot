@@ -5,17 +5,14 @@ homework_bot
 homework_bot - Проект для отслеживания результата ревью от Яндекс.Практикум.
 Бот работает с API Яндекс.Практикум, отображает статус проверки кода вашей работы. Каждые 10 минут бот проверяет API Яндекс.Практикум и присылает в телеграм статус. Если работа проверена вы получите сообщение о статусе код-ревью.
 
+Получить PRACTICUM_TOKEN: https://oauth.yandex.ru/authorize?response_type=token&client_id=1d0b9dd4d652455a9eb710d450ff456a
+
 ### Технологии в проекте
 - Python 3.10
 - pytest 6.2.5
 - dotenv 0.19.0
 - python-telegram-bot 13.7
 - requests 2.26.0
-
-
-
-Получить PRACTICUM_TOKEN: https://oauth.yandex.ru/authorize?response_type=token&client_id=1d0b9dd4d652455a9eb710d450ff456a
-
 
 ### Автор
 Швейников Андрей
